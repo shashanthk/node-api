@@ -5,7 +5,7 @@ const authError = (resp, message) => {
     resp.status(401).json({
         status: ERROR_STATUS,
         data: null,
-        description: message ? message : 'Auth error'
+        description: message ? message : 'Unauthorized'
     })
 }
 
@@ -13,7 +13,7 @@ const forbiddenAccess = (resp, message) => {
     resp.status(403).json({
         status: ERROR_STATUS,
         data: null,
-        description: message ? message : 'Forbidden access'
+        description: message ? message : 'Forbidden'
     })
 }
 
@@ -29,7 +29,7 @@ const error = (resp, message = null) => {
     resp.status(500).json({
         status: ERROR_STATUS,
         data: null,
-        description: message ? message : 'Internal server error'
+        description: message ? message : 'Internal Server Error'
     })
 }
 
@@ -37,7 +37,15 @@ const invalidInput = (resp, message = null) => {
     resp.status(422).json({
         status: ERROR_STATUS,
         data: null,
-        description: message ? message : 'Invalid input'
+        description: message ? message : 'Unprocessable Entity'
+    })
+}
+
+const routeNotFound = (resp) => {
+    resp.status(404).json({
+        status: ERROR_STATUS,
+        data: null,
+        description: 'Not Found'
     })
 }
 
@@ -46,5 +54,6 @@ module.exports = {
     forbiddenAccess,
     success,
     error,
-    invalidInput
+    invalidInput,
+    routeNotFound
 }

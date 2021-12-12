@@ -30,12 +30,12 @@ app.use((error, req, resp, next) => {
 
     // if in production mode, do not send full error trace to end user
     if (IS_PROD) {
-        error.message = 'Internal server error'
+        error.message = 'Internal Server Error'
     }
 
     return responseHelper.error(resp, error.message)
 })
 
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server is running at http://localhost:${PORT}`)
 })
