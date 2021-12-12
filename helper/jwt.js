@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 const encodeData = (data) => {
     return jwt.sign(data, process.env.JWT_SECRET, {
-        expiresIn: '24h'
+        expiresIn: process.env.TOKEN_EXP_PERIOD
     })
 }
 
