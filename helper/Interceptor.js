@@ -1,5 +1,5 @@
 const { OPEN_ROUTES } = require('../helper/EnvHelper')
-const jwt = require('../helper/jwt')
+const jwt = require('../helper/JwtUtil')
 const responseHelper = require('../util/ResponseHelper')
 
 const basicAuth = async (req, resp, next) => {

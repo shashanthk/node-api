@@ -1,5 +1,5 @@
 const responseHelper = require('../util/ResponseHelper')
-const jwt = require('../helper/jwt')
+const jwt = require('../helper/JwtUtil')
 
 const login = async (req, resp, next) => {
 
