@@ -1,14 +1,14 @@
-require('dotenv').config()
 const router = require('express').Router()
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 const authInterceptor = require('../helper/interceptor')
+const { IS_PROD } = require('../helper/EnvHelper')
 
 const authController = require('../controller/AuthController')
 
 // api documentation
 // show only in development server
-if (process.env.IS_PROD === 'false') {
+if (!IS_PROD) {
     router.use('/api-docs', swaggerUi.serve)
     router.get('/api-docs', swaggerUi.setup(swaggerDocument))
 }

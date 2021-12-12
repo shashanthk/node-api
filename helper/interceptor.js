@@ -1,4 +1,4 @@
-require('dotenv').config()
+const { OPEN_ROUTES } = require('../helper/EnvHelper')
 const jwt = require('../helper/jwt')
 const responseHelper = require('../util/ResponseHelper')
 
@@ -41,8 +41,11 @@ const basicAuth = async (req, resp, next) => {
     }
 }
 
+// currently requested path is not in the open routes list, 
+// do not allow to continue without token
 const isAuthCheckRequired = (path) => {
-    return (process.env.OPEN_ROUTES.split(',').indexOf(path.substring(1)) === -1)
+    if (!path) return true
+    return (OPEN_ROUTES.split(',').indexOf(path.substring(1)) === -1)
 }
 
 module.exports = {
