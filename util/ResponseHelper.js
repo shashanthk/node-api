@@ -33,9 +33,18 @@ const error = (resp, message = null) => {
     })
 }
 
+const invalidInput = (resp, message = null) => {
+    resp.status(422).json({
+        status: ERROR_STATUS,
+        data: null,
+        description: message ? message : 'Invalid input'
+    })
+}
+
 module.exports = {
     authError,
     forbiddenAccess,
     success,
-    error
+    error,
+    invalidInput
 }
