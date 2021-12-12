@@ -14,13 +14,13 @@ const basicAuth = async (req, resp, next) => {
         }
 
         if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
-            throw new Error('Missing authentication header')
+            return responseHelper.forbiddenAccess(resp, 'Missing authentication header')
         }
 
         const token = req.headers.authorization.split(' ')[1]
 
         if (!token) {
-            throw new Error('Missing token')
+            return responseHelper.forbiddenAccess(resp, 'Missing authentication token')
         }
 
         // decode data from JWT
