@@ -13,7 +13,7 @@ const basicAuth = async (req, resp, next) => {
             return next()
         }
 
-        if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
+        if (!req.headers.authorization || req.headers.authorization.indexOf('Bearer ') === -1) {
             return responseHelper.forbiddenAccess(resp, 'Missing authentication header')
         }
 

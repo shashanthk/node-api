@@ -6,6 +6,7 @@ const responseHelper = require('../util/ResponseHelper')
 const { IS_PROD } = require('../helper/EnvHelper')
 
 const authController = require('../controller/AuthController')
+const todoController = require('../controller/TodoController')
 
 // api documentation
 // show only in development server
@@ -17,8 +18,12 @@ if (!IS_PROD) {
 router.get('/', (req, resp) => {
     return responseHelper.success(resp, null, 'Server is active')
 })
+
+// auth
 router.post('/authenticate', authController.login)
-router.get('/test-auth', authInterceptor.basicAuth, authController.authCheck)
+
+// todos
+router.get('/todos', authInterceptor.basicAuth, todoController.listTodos)
 
 // global 404 error handler
 router.get('*', (req, resp) => {
